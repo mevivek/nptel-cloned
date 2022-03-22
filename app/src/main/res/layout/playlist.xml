@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="playlist"
+            type="com.nptel.courses.online.entities.Playlist" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="2dp"
+        tools:cardBackgroundColor="#34009688"
+        tools:strokeColor="#009688">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/module_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="4dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/module_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@id/videos_count_container"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/shapeable_image_4dp"
+                app:url="@{playlist.image}"
+                tools:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:ellipsize="end"
+                android:lines="3"
+                android:text="@{playlist.title}"
+                android:textColor="#009688"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/module_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="A long description of this modules." />
+
+            <LinearLayout
+                android:id="@+id/videos_count_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:alpha="0.8"
+                android:background="@drawable/rectangle_radius_4dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="4dp"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:backgroundTint="#1A009688">
+
+                <TextView
+                    android:id="@+id/videos_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{"Videos: " + (playlist.videosCount.toString() == null ? "" : playlist.videosCount.toString())}'
+                    tools:text="Videos: 521"
+                    tools:textColor="#80009688" />
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/videos_count_progress"
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"
+                    android:indeterminate="true"
+                    android:visibility="@{playlist.videosCount == null ? View.VISIBLE : View.GONE}"
+                    app:indicatorColor="#80009688"
+                    app:indicatorSize="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/videos_count"
+                    app:layout_constraintStart_toEndOf="@id/videos_count"
+                    app:layout_constraintTop_toTopOf="@id/videos_count"
+                    app:trackCornerRadius="2dp"
+                    app:trackThickness="1dp"
+                    tools:indeterminate="false"
+                    tools:progress="80" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:background="#1A009688"
+                app:layout_constraintTop_toBottomOf="@id/videos_count_container" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:padding="5dp"
+                android:text="@{playlist.description}"
+                android:textColor="#B3009688"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line"
+                tools:text="Playlist Name Goes Here..." />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

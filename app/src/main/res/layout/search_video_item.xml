@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.nptel.courses.online.utility.ISO8601" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="video"
+            type="com.nptel.courses.online.entities.Video" />
+
+        <variable
+            name="show_delete"
+            type="boolean" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="#1A8BC34A"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:contentPadding="4dp"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/video_thumbnail"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:backgroundTint="#00ffffff"
+                android:contentDescription="@string/video_thumbnail"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@id/video_duration"
+                app:layout_constraintDimensionRatio="4:3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/shapeable_image_4dp"
+                app:srcCompat="@mipmap/no_image"
+                app:url="@{video.image}"
+                tools:src="@mipmap/icon" />
+
+            <TextView
+                android:id="@+id/video_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:lines="2"
+                android:text="@{video.title}"
+                android:textColor="#8BC34A"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/video_thumbnail"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Title Of The Video" />
+
+            <TextView
+                android:id="@+id/video_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/rectangle_radius_4dp"
+                tools:backgroundTint="#1A8BC34A"
+                android:paddingHorizontal="4dp"
+                android:text="@{ISO8601.getTime(video.duration)}"
+                android:textColor="#808BC34A"
+                app:layout_constraintStart_toStartOf="@id/video_title"
+                app:layout_constraintTop_toBottomOf="@id/video_title"
+                tools:text="25min : 30sec" />
+
+            <TextView
+                android:id="@+id/course_playlist"
+                android:layout_width="match_parent"
+                android:paddingHorizontal="8dp"
+                android:textSize="12sp"
+                tools:background="#1A8BC34A"
+                android:layout_height="wrap_content"
+                android:textColor="#808BC34A"
+                android:layout_marginTop="4dp"
+                android:text='@{video.course.title + " > " + video.playlist.title}'
+                app:layout_constraintTop_toBottomOf="@id/video_thumbnail"
+                tools:text="Computer Science Engineering > Algorithm" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="@{video.description}"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@id/video_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/course_playlist"
+                tools:text="Video Description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
