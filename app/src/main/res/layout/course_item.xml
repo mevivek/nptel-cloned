@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="course"
+            type="com.nptel.courses.online.entities.Course" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="#1AE91E63"
+        app:cardElevation="0dp"
+        app:contentPadding="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/initial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_filled_stroked"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="@{course.title.substring(0, 1)}"
+                android:textSize="22sp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:backgroundTint="#1AE91E63"
+                tools:text="C"
+                tools:textColor="#E91E63" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:lines="2"
+                android:text="@{course.title}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/initial"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Computer Science And Engineering"
+                tools:textColor="#E91E63" />
+
+            <LinearLayout
+                android:id="@+id/playlists_count_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:alpha="0.8"
+                android:background="@drawable/rectangle_radius_4dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="4dp"
+                app:layout_constraintStart_toStartOf="@id/name"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:backgroundTint="#1AE91E63">
+
+                <TextView
+                    android:id="@+id/playlists_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{"Playlists: " + course.playlistsCount}'
+                    tools:text="Playlists: 21"
+                    tools:textColor="#80E91E63" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/videos_count_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:alpha="0.8"
+                android:background="@drawable/rectangle_radius_4dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="4dp"
+                app:layout_constraintStart_toEndOf="@id/playlists_count_container"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:backgroundTint="#1AE91E63">
+
+                <TextView
+                    android:id="@+id/videos_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{"Videos: " + course.videosCount}'
+                    tools:text="Videos: 521"
+                    tools:textColor="#80E91E63" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
